@@ -8,9 +8,10 @@ interface Props {
   isFavorited: boolean;
   className?: string;
   size?: number;
+  onToggled?: (isFavorited: boolean) => void;
 }
 
-export function FavoriteButton({ productId, isFavorited, className, size = 22 }: Props) {
+export function FavoriteButton({ productId, isFavorited, className, size = 22, onToggled }: Props) {
   const { user } = useAuth();
   const navigate = useNavigate();
   const [favorited, setFavorited] = useState<boolean>(isFavorited);
@@ -34,6 +35,7 @@ export function FavoriteButton({ productId, isFavorited, className, size = 22 }:
       } else {
         await removeFavorite(productId);
       }
+      onToggled?.(next);
     } catch (err) {
       setFavorited(!next); // rollback
       const msg = err instanceof Error ? err.message : 'Could not update favorite';

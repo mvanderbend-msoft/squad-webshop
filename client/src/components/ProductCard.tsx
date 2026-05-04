@@ -4,9 +4,10 @@ import { FavoriteButton } from './FavoriteButton';
 
 interface Props {
   product: Product;
+  onFavoriteToggled?: (productId: number, isFavorited: boolean) => void;
 }
 
-export function ProductCard({ product }: Props) {
+export function ProductCard({ product, onFavoriteToggled }: Props) {
   return (
     <div className="card">
       <div className="card-img-wrapper">
@@ -20,6 +21,11 @@ export function ProductCard({ product }: Props) {
           productId={product.id}
           isFavorited={product.isFavorited ?? false}
           className="card-favorite"
+          onToggled={
+            onFavoriteToggled
+              ? (next) => onFavoriteToggled(product.id, next)
+              : undefined
+          }
         />
       </div>
       <div className="card-body">

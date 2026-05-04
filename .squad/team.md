@@ -18,6 +18,20 @@
 | 🧪 Ripley  | Tester       | `.squad/agents/ripley/charter.md`  | Active |
 | 📋 Scribe  | Session Logger | `.squad/agents/scribe/charter.md` | Active |
 | 🔄 Ralph   | Work Monitor | `.squad/agents/ralph/charter.md`   | Active |
+| 🤖 @copilot | Coding Agent | `.github/copilot-instructions.md` | Active |
+
+<!-- copilot-auto-assign: true -->
+
+### @copilot Capability Profile
+
+| Area | Confidence | Notes |
+|------|-----------|-------|
+| Docs / README updates | 🟢 High | Well-scoped, low-risk |
+| Single-file refactors | 🟢 High | Pattern matching, mechanical edits |
+| Tests from spec | 🟡 Medium | Works when scope is clear |
+| DB migrations | 🟡 Medium | Tight schema specs only |
+| Multi-file architecture | 🔴 Low | Defer to Lambert/Parker |
+| UI/UX polish | 🔴 Low | Visual judgment needed |
 
 ## Project Context
 

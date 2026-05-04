@@ -24,3 +24,4 @@ client/dist/
 .squad/.scratch/
 # Squad: SubSquad activation file (local to this machine)
 .squad-workstream
+.squad/.watch-pids

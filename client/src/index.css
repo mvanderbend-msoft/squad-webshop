@@ -1145,3 +1145,21 @@ ul {
   z-index: 1000;
   max-width: 280px;
 }
+
+/* ---- Card image wrapper for favorite overlay ---- */
+.card-img-wrapper {
+  position: relative;
+}
+
+.card-favorite {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
+
+.product-detail-title-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+}

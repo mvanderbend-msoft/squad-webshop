@@ -7,6 +7,7 @@ import { Cart } from './pages/Cart';
 import { Checkout } from './pages/Checkout';
 import { Account } from './pages/Account';
 import { OrderDetail } from './pages/OrderDetail';
+import { Favorites } from './pages/Favorites';
 import { Login } from './pages/Login';
 import { Register } from './pages/Register';
 import { NotFound } from './pages/NotFound';
@@ -48,6 +49,14 @@ export default function App() {
             element={
               <ProtectedRoute>
                 <OrderDetail />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/favorites"
+            element={
+              <ProtectedRoute>
+                <Favorites />
               </ProtectedRoute>
             }
           />

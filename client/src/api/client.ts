@@ -173,6 +173,14 @@ export function getOrder(id: number) {
   return apiFetch<{ order: Order }>(`/api/orders/${id}`);
 }
 
+export interface FavoriteProduct extends Product {
+  favorited_at: string;
+}
+
+export function listFavorites() {
+  return apiFetch<{ favorites: FavoriteProduct[] }>('/api/favorites');
+}
+
 export function addFavorite(productId: number) {
   return apiFetch<void>(`/api/favorites/${productId}`, { method: 'POST' });
 }

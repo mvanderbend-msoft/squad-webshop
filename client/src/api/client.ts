@@ -60,6 +60,7 @@ export interface Product {
   image_url: string;
   stock: number;
   category: Category;
+  isFavorited?: boolean;
 }
 
 export interface CartItem {
@@ -170,4 +171,12 @@ export function getOrders() {
 
 export function getOrder(id: number) {
   return apiFetch<{ order: Order }>(`/api/orders/${id}`);
+}
+
+export function addFavorite(productId: number) {
+  return apiFetch<void>(`/api/favorites/${productId}`, { method: 'POST' });
+}
+
+export function removeFavorite(productId: number) {
+  return apiFetch<void>(`/api/favorites/${productId}`, { method: 'DELETE' });
 }

@@ -6,6 +6,7 @@ import { useAuth } from '../context/AuthContext';
 import { useCart } from '../context/CartContext';
 import { Loading } from '../components/Loading';
 import { ErrorBox } from '../components/ErrorBox';
+import { FavoriteButton } from '../components/FavoriteButton';
 
 function formatPrice(cents: number): string {
   return new Intl.NumberFormat('en-GB', { style: 'currency', currency: 'GBP' }).format(cents / 100);
@@ -64,6 +65,13 @@ export function ProductDetail() {
           <p className={`product-stock${product.stock < 10 ? ' low' : ''}`}>
             {product.stock > 0 ? `${product.stock} in stock` : 'Out of stock'}
           </p>
+
+          <div className="product-actions-row">
+            <FavoriteButton
+              productId={product.id}
+              isFavorited={product.isFavorited ?? false}
+            />
+          </div>
 
           {user ? (
             <div className="add-to-cart-row">

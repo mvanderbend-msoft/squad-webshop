@@ -822,6 +822,82 @@ ul {
   gap: 0.75rem;
 }
 
+.product-actions-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* ---- Favorite Button ---- */
+.fav-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  background: transparent;
+  border: 1px solid #d1d5db;
+  border-radius: 50%;
+  cursor: pointer;
+  color: #6b7280;
+  transition: color 0.15s, background 0.15s, border-color 0.15s, transform 0.1s;
+  flex-shrink: 0;
+}
+
+.fav-btn:hover {
+  color: #e11d48;
+  background: #fff1f2;
+  border-color: #fda4af;
+}
+
+.fav-btn:focus-visible {
+  outline: 3px solid #2563eb;
+  outline-offset: 2px;
+}
+
+.fav-btn:active {
+  transform: scale(0.92);
+}
+
+.fav-btn--active {
+  color: #e11d48;
+  background: #fff1f2;
+  border-color: #fda4af;
+}
+
+.fav-btn--active:hover {
+  color: #9f1239;
+  background: #ffe4e6;
+}
+
+.fav-toast {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 9999;
+  background: #1f2937;
+  color: #fff;
+  padding: 0.65rem 1rem;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  max-width: 320px;
+  pointer-events: none;
+  animation: fav-toast-in 0.2s ease;
+}
+
+@keyframes fav-toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* ---- Misc ---- */
 .loading {
   text-align: center;

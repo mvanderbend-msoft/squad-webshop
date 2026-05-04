@@ -10,11 +10,17 @@ const __dirname = dirname(__filename);
 // Resolve data directory relative to this file's location (src/db → go up to server/)
 const serverRoot = join(__dirname, '..', '..');
 const dataDir = join(serverRoot, 'data');
-const dbPath = join(dataDir, 'webshop.db');
+const defaultDbPath = join(dataDir, 'webshop.db');
 
-mkdirSync(dataDir, { recursive: true });
+// Allow overriding the SQLite path via env var (used by tests, e.g. ':memory:').
+const dbPath = process.env.SQLITE_PATH || defaultDbPath;
+const isInMemory = dbPath === ':memory:';
 
-const isNew = !existsSync(dbPath);
+if (!isInMemory) {
+  mkdirSync(dataDir, { recursive: true });
+}
+
+const isNew = isInMemory || !existsSync(dbPath);
 
 const db = new DatabaseSync(dbPath);
 db.exec('PRAGMA journal_mode = WAL');

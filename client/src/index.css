@@ -315,6 +315,23 @@ ul {
   object-fit: cover;
 }
 
+.card-img-wrap {
+  position: relative;
+}
+
+.card-fav {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  z-index: 1;
+}
+
+.card-fav .fav-btn {
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: 999px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
 .card-body {
   padding: 1rem;
   display: flex;

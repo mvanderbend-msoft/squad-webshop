@@ -28,8 +28,8 @@ squad-webshop/
 │       ├── middleware/        # auth.ts (JWT)
 │       └── routes/            # auth, products, cart, orders
 ├── .github/
-│   ├── ISSUE_TEMPLATE/        # PRD + work-item templates
-│   └── labels.yml             # team:* / type:* / ralph:* labels
+│   ├── ISSUE_TEMPLATE/        # PRD + work-item templates (use the `squad` label)
+│   └── labels.yml             # Squad-compatible labels (squad, priority:*, next-up, …)
 ├── demo.md                    # ← demo orchestration guide
 └── package.json               # workspaces root
 ```
@@ -38,7 +38,7 @@ squad-webshop/
 
 - Node.js **22 or newer** (uses the built-in `node:sqlite` module). Tested on Node 24.
 - npm 10+
-- (For the demo) the [`gh` CLI](https://cli.github.com/), authenticated, and the GitHub Copilot CLI.
+- (For the demo) the [`gh` CLI](https://cli.github.com/), the [GitHub Copilot CLI](https://docs.github.com/en/copilot/github-copilot-in-the-cli), and the [Squad CLI](https://github.com/bradygaster/squad) (`npm install -g @bradygaster/squad-cli`).
 
 ## Setup
 

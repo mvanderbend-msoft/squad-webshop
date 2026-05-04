@@ -2,7 +2,7 @@
 name: PRD
 about: Product Requirements Document — single parent issue describing a feature end-to-end
 title: "[PRD] <feature name>"
-labels: ["type:prd"]
+labels: ["squad"]
 ---
 
 ## Summary
@@ -23,13 +23,14 @@ labels: ["type:prd"]
 - [ ]
 
 ## Cross-cutting Work
-List the team areas this feature touches. Each becomes its own work-item issue with the matching `team:*` label.
+List the areas this feature touches. The Lead will split this into child issues
+and assign each to a `squad:{member}` based on the team's `routing.md`.
 
-- **Database** (`team:database`):
-- **Backend** (`team:backend`):
-- **Frontend** (`team:frontend`):
-- **QA** (`team:qa`):
-- **Docs** (`team:docs`):
+- **Database:**
+- **Backend:**
+- **Frontend:**
+- **Tests:**
+- **Docs:**
 
 ## Notes
 <any constraints, dependencies, or context>

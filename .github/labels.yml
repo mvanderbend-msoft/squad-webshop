@@ -1,37 +1,44 @@
 # Labels for the Squad Demo workflow.
-# Apply with: gh label create -f .github/labels.yml  (or use a sync action)
-# Each work item issue gets exactly one team:* label so the team member knows
-# what they own. Ralph uses ralph:* labels to track loop state.
+#
+# Squad uses a specific label scheme (see https://github.com/bradygaster/squad —
+# .squad-templates/routing.md and issue-lifecycle.md).
+#
+# Apply with:
+#   gh label create "squad"            -c "5319e7" -d "..." --force   (etc.)
+# Or use a labels-sync GitHub Action that reads this file.
+#
+# IMPORTANT: do NOT pre-create `squad:{name}` labels (e.g. `squad:edie`).
+# Those are created at `squad init` time once the casting policy assigns
+# names to the team members. You only need:
+#   - `squad`            — the inbox label; Lead triages anything wearing it
+#   - `squad:untriaged`  — explicit "needs triage" marker
+#   - `priority:p0..p3`  — priority used by Ralph to order work
+#   - `next-up`          — queued for the next agent pickup
+#   - `go:needs-research`— route through a research agent first
 
-- name: "team:database"
-  color: "1f6feb"
-  description: "Database schema, migrations, seed data"
-- name: "team:backend"
-  color: "0e8a16"
-  description: "Node/Express API endpoints and middleware"
-- name: "team:frontend"
-  color: "d93f0b"
-  description: "React UI components, pages, styling"
-- name: "team:qa"
-  color: "fbca04"
-  description: "Tests, quality, validation"
-- name: "team:docs"
+- name: "squad"
   color: "5319e7"
-  description: "Documentation updates"
-
-- name: "type:prd"
-  color: "b60205"
-  description: "Product Requirements Document — parent issue"
-- name: "type:work-item"
-  color: "c5def5"
-  description: "Individual work item, child of a PRD"
-
-- name: "ralph:ready"
-  color: "0e8a16"
-  description: "Ready for Ralph to pick up and assign"
-- name: "ralph:in-progress"
+  description: "Squad backlog — Lead will triage and assign squad:{member}"
+- name: "squad:untriaged"
   color: "fbca04"
-  description: "Currently being worked by a team member"
-- name: "ralph:blocked"
+  description: "Needs triage by the Lead"
+
+- name: "priority:p0"
   color: "b60205"
-  description: "Blocked — needs human attention"
+  description: "Critical — drop everything"
+- name: "priority:p1"
+  color: "d93f0b"
+  description: "High"
+- name: "priority:p2"
+  color: "fbca04"
+  description: "Medium"
+- name: "priority:p3"
+  color: "0e8a16"
+  description: "Low"
+
+- name: "next-up"
+  color: "0e8a16"
+  description: "Queued for next agent pickup"
+- name: "go:needs-research"
+  color: "1f6feb"
+  description: "Needs investigation before implementation"

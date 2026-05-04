@@ -1,8 +1,8 @@
 ---
 name: Work Item
-about: A single, scoped piece of work owned by one team area. Child of a PRD.
-title: "[<team>] <short description>"
-labels: ["type:work-item", "ralph:ready"]
+about: A scoped piece of work, child of a PRD. Lead will assign to a squad member.
+title: "<short description>"
+labels: ["squad"]
 ---
 
 ## Parent PRD
@@ -18,7 +18,7 @@ Closes part of #<PRD issue number>
 ## Files likely to change
 -
 
-## Notes for Ralph / the assignee
-- Branch from `main`, name it `<team>/<short-slug>`.
+## Notes for the assignee
+- Branch from `main`, name it `squad/<issue-number>-<short-slug>`.
 - **Do NOT commit to `main` directly. Always open a PR.**
-- Reference this issue in the PR description (e.g., `Closes #<n>`).
+- Reference this issue from the PR (`Closes #<n>`).

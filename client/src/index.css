@@ -967,3 +967,22 @@ ul {
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
   font-size: 0.9rem;
 }
+
+/* ---- Favorite button positioning ---- */
+.card-img-wrap {
+  position: relative;
+}
+.card-favorite {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: 50%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+.product-detail-title-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}

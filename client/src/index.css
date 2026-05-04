@@ -920,3 +920,134 @@ ul {
     padding: 1.5rem 1rem;
   }
 }
+
+/* ---- Favorites ---- */
+.card-img-wrap {
+  position: relative;
+}
+
+.card-fav {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+}
+
+.favorite-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid #e5e7eb;
+  border-radius: 999px;
+  cursor: pointer;
+  color: #6b7280;
+  line-height: 1;
+  padding: 0;
+  transition: color 0.15s, background 0.15s, border-color 0.15s, transform 0.1s;
+}
+
+.favorite-btn:hover:not(:disabled) {
+  color: #ef4444;
+  border-color: #fecaca;
+  background: #fff;
+}
+
+.favorite-btn:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
+.favorite-btn:active:not(:disabled) {
+  transform: scale(0.92);
+}
+
+.favorite-btn.is-favorited {
+  color: #ef4444;
+  border-color: #fecaca;
+  background: #fff;
+}
+
+.favorite-btn.is-pending {
+  opacity: 0.7;
+  cursor: progress;
+}
+
+.favorite-btn-sm {
+  width: 36px;
+  height: 36px;
+  font-size: 1.15rem;
+}
+
+.favorite-btn-md {
+  width: 42px;
+  height: 42px;
+  font-size: 1.3rem;
+}
+
+.favorite-btn-lg {
+  width: 48px;
+  height: 48px;
+  font-size: 1.55rem;
+}
+
+.favorite-btn-icon {
+  display: inline-block;
+  line-height: 1;
+}
+
+.favorite-btn-error {
+  position: absolute;
+  bottom: -1.6rem;
+  right: 0;
+  background: #fee2e2;
+  color: #991b1b;
+  font-size: 0.75rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+/* ---- Favorites page ---- */
+.page-favorites {
+  padding-top: 1rem;
+}
+
+.page-header {
+  margin-bottom: 1.5rem;
+}
+
+.page-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.page-subtitle {
+  color: #6b7280;
+  margin-top: 0.25rem;
+}
+
+.empty-state-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 3rem 1.5rem;
+  text-align: center;
+}
+
+.empty-state-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.empty-state-text {
+  color: #6b7280;
+}
+
+.product-detail-title-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  justify-content: space-between;
+}

@@ -97,6 +97,18 @@ npm run dev:server
 
 - ❌ **Add to Favorites.** This is the demo target. Don't add it. Don't merge a PR that adds it before the demo.
 
+## Favorites
+
+Authenticated users can mark products as favorites. Favorites are persisted server-side and retrieved with product listings and detail views. See [PRD #1](https://github.com/mvanderbend-msoft/squad-webshop/issues/1) for architectural decisions.
+
+### Authentication
+
+All favorites endpoints require a valid JWT in the `Authorization: Bearer <token>` header. Unauthenticated requests return `401 Unauthorized`.
+
+### isFavorited on product responses
+
+All product API responses (`GET /api/products` and `GET /api/products/:id`) include an `isFavorited: boolean` field indicating whether the authenticated user has favorited that product. Unauthenticated users always see `isFavorited: false`.
+
 ## API surface
 
 | Method | Path | Auth | Description |
@@ -105,9 +117,12 @@ npm run dev:server
 | POST | `/api/auth/register` | – | Create user, return JWT |
 | POST | `/api/auth/login` | – | Login, return JWT |
 | GET | `/api/auth/me` | ✅ | Current user |
-| GET | `/api/products?category=&q=` | – | List / search products |
-| GET | `/api/products/:id` | – | Product detail |
+| GET | `/api/products?category=&q=` | – | List products (includes `isFavorited` for authenticated users) |
+| GET | `/api/products/:id` | – | Product detail (includes `isFavorited` for authenticated users) |
 | GET | `/api/categories` | – | List categories |
+| **GET** | **`/api/favorites`** | **✅** | **List user's favorite product IDs** |
+| **POST** | **`/api/favorites/:productId`** | **✅** | **Add product to favorites** |
+| **DELETE** | **`/api/favorites/:productId`** | **✅** | **Remove product from favorites** |
 | GET | `/api/cart` | ✅ | Current user's cart |
 | POST | `/api/cart` | ✅ | Add / increment item |
 | PATCH | `/api/cart/:itemId` | ✅ | Update quantity |
@@ -116,6 +131,68 @@ npm run dev:server
 | POST | `/api/orders` | ✅ | Checkout from cart |
 | GET | `/api/orders` | ✅ | Order history |
 | GET | `/api/orders/:id` | ✅ | Order detail |
+
+## Favorites API Reference
+
+### GET /api/favorites
+
+List the IDs of products favorited by the authenticated user.
+
+**Request:**
+```bash
+curl -H "Authorization: Bearer <token>" http://localhost:4000/api/favorites
+```
+
+**Response (200 OK):**
+```json
+[42, 17, 105]
+```
+
+**Status codes:**
+- `200 OK` — Success
+- `401 Unauthorized` — Missing or invalid JWT
+
+### POST /api/favorites/:productId
+
+Add a product to the authenticated user's favorites. Idempotent — adding the same product multiple times is safe and returns 200.
+
+**Request:**
+```bash
+curl -X POST \
+  -H "Authorization: Bearer <token>" \
+  http://localhost:4000/api/favorites/42
+```
+
+**Response (200 OK):**
+```json
+{ "productId": 42, "isFavorited": true }
+```
+
+**Status codes:**
+- `200 OK` — Product added (or already favorited)
+- `401 Unauthorized` — Missing or invalid JWT
+- `404 Not Found` — Product does not exist
+
+### DELETE /api/favorites/:productId
+
+Remove a product from the authenticated user's favorites. Idempotent — removing a non-favorited product is safe and returns 200.
+
+**Request:**
+```bash
+curl -X DELETE \
+  -H "Authorization: Bearer <token>" \
+  http://localhost:4000/api/favorites/42
+```
+
+**Response (200 OK):**
+```json
+{ "productId": 42, "isFavorited": false }
+```
+
+**Status codes:**
+- `200 OK` — Product removed (or was not favorited)
+- `401 Unauthorized` — Missing or invalid JWT
+- `404 Not Found` — Product does not exist
 
 ## License
 

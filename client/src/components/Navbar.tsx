@@ -30,6 +30,9 @@ export function Navbar() {
           </NavLink>
           {user ? (
             <>
+              <NavLink to="/favorites" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>
+                Favorites
+              </NavLink>
               <NavLink to="/account" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>
                 Account
               </NavLink>

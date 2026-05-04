@@ -6,6 +6,7 @@ import { useAuth } from '../context/AuthContext';
 import { useCart } from '../context/CartContext';
 import { Loading } from '../components/Loading';
 import { ErrorBox } from '../components/ErrorBox';
+import { FavoriteButton } from '../components/FavoriteButton';
 
 function formatPrice(cents: number): string {
   return new Intl.NumberFormat('en-GB', { style: 'currency', currency: 'GBP' }).format(cents / 100);
@@ -58,7 +59,15 @@ export function ProductDetail() {
         <img src={product.image_url} alt={product.name} className="product-detail-img" />
         <div className="product-detail-info">
           <span className="card-category">{product.category.name}</span>
-          <h1 className="product-detail-title">{product.name}</h1>
+          <div className="product-detail-title-row">
+            <h1 className="product-detail-title">{product.name}</h1>
+            <FavoriteButton
+              productId={product.id}
+              productName={product.name}
+              initialFavorited={product.isFavorited ?? false}
+              size="lg"
+            />
+          </div>
           <p className="product-detail-price">{formatPrice(product.price_cents)}</p>
           <p className="product-detail-description">{product.description}</p>
           <p className={`product-stock${product.stock < 10 ? ' low' : ''}`}>

@@ -38,6 +38,9 @@ async function apiFetch<T>(path: string, opts: RequestInit = {}): Promise<T> {
     } catch {
       // ignore parse error
     }
+    if (res.status === 401) {
+      throw new UnauthorizedError(message);
+    }
     throw new Error(message);
   }
 
@@ -60,6 +63,7 @@ export interface Product {
   image_url: string;
   stock: number;
   category: Category;
+  isFavorited?: boolean;
 }
 
 export interface CartItem {
@@ -170,4 +174,29 @@ export function getOrders() {
 
 export function getOrder(id: number) {
   return apiFetch<{ order: Order }>(`/api/orders/${id}`);
+}
+
+// ——— Favorites ———
+
+export class UnauthorizedError extends Error {
+  constructor(message = 'Unauthorized') {
+    super(message);
+    this.name = 'UnauthorizedError';
+  }
+}
+
+export function getFavorites() {
+  return apiFetch<Product[]>('/api/favorites');
+}
+
+export function addFavorite(productId: number) {
+  return apiFetch<{ isFavorited: boolean }>(`/api/favorites/${productId}`, {
+    method: 'POST',
+  });
+}
+
+export function removeFavorite(productId: number) {
+  return apiFetch<{ isFavorited: boolean }>(`/api/favorites/${productId}`, {
+    method: 'DELETE',
+  });
 }

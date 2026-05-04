@@ -9,6 +9,7 @@ import { Account } from './pages/Account';
 import { OrderDetail } from './pages/OrderDetail';
 import { Login } from './pages/Login';
 import { Register } from './pages/Register';
+import { Favorites } from './pages/Favorites';
 import { NotFound } from './pages/NotFound';
 
 export default function App() {
@@ -48,6 +49,14 @@ export default function App() {
             element={
               <ProtectedRoute>
                 <OrderDetail />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/favorites"
+            element={
+              <ProtectedRoute>
+                <Favorites />
               </ProtectedRoute>
             }
           />

@@ -180,3 +180,7 @@ export function addFavorite(productId: number) {
 export function removeFavorite(productId: number) {
   return apiFetch<void>(`/api/favorites/${productId}`, { method: 'DELETE' });
 }
+
+export function getFavorites() {
+  return apiFetch<{ favorites: Product[] }>('/api/favorites');
+}

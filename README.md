@@ -1,6 +1,6 @@
 # Squad Webshop
 
-Sample webshop application used as the starting point for the **Squad Demo**. It is intentionally feature-complete *except* for an "Add to Favorites" feature — that gap is what gets built live during the demo by AI agents.
+Sample webshop application used as the starting point for the **Squad Demo**. The "Add to Favorites" feature was built live during the demo by AI agents.
 
 > 👉 If you came here to run the demo, read **[`demo.md`](./demo.md)** first.
 
@@ -26,7 +26,7 @@ squad-webshop/
 │   └── src/
 │       ├── db/                # schema.sql, seed.ts, connection.ts
 │       ├── middleware/        # auth.ts (JWT)
-│       └── routes/            # auth, products, cart, orders
+│       └── routes/            # auth, products, cart, orders, favorites
 ├── .github/
 │   ├── ISSUE_TEMPLATE/        # PRD + work-item templates (use the `squad` label)
 │   └── labels.yml             # Squad-compatible labels (squad, priority:*, next-up, …)
@@ -92,10 +92,11 @@ npm run dev:server
 - Mock checkout that creates an order with frozen unit prices
 - User registration / login (JWT, 7-day expiry)
 - Account page with order history and order details
+- **Add to Favorites** — authenticated users can save and unsave products; `isFavorited` is returned on every product response
 
 ## What's *not* included (on purpose)
 
-- ❌ **Add to Favorites.** This is the demo target. Don't add it. Don't merge a PR that adds it before the demo.
+- *(nothing intentionally omitted at this time)*
 
 ## API surface
 
@@ -105,8 +106,8 @@ npm run dev:server
 | POST | `/api/auth/register` | – | Create user, return JWT |
 | POST | `/api/auth/login` | – | Login, return JWT |
 | GET | `/api/auth/me` | ✅ | Current user |
-| GET | `/api/products?category=&q=` | – | List / search products |
-| GET | `/api/products/:id` | – | Product detail |
+| GET | `/api/products?category=&q=` | – | List / search products; includes `isFavorited: boolean` (always `false` when unauthenticated) |
+| GET | `/api/products/:id` | – | Product detail; includes `isFavorited: boolean` (always `false` when unauthenticated) |
 | GET | `/api/categories` | – | List categories |
 | GET | `/api/cart` | ✅ | Current user's cart |
 | POST | `/api/cart` | ✅ | Add / increment item |
@@ -116,6 +117,9 @@ npm run dev:server
 | POST | `/api/orders` | ✅ | Checkout from cart |
 | GET | `/api/orders` | ✅ | Order history |
 | GET | `/api/orders/:id` | ✅ | Order detail |
+| GET | `/api/favorites` | ✅ | List current user's favorited products |
+| POST | `/api/favorites/:productId` | ✅ | Add product to favorites (idempotent — safe to call if already favorited) |
+| DELETE | `/api/favorites/:productId` | ✅ | Remove product from favorites (idempotent — safe to call if not favorited) |
 
 ## License
 

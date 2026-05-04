@@ -10,9 +10,14 @@ const __dirname = dirname(__filename);
 // Resolve data directory relative to this file's location (src/db → go up to server/)
 const serverRoot = join(__dirname, '..', '..');
 const dataDir = join(serverRoot, 'data');
-const dbPath = join(dataDir, 'webshop.db');
+// Allow tests to redirect the DB to an isolated location via SQUAD_DB_PATH.
+const dbPath = process.env.SQUAD_DB_PATH ?? join(dataDir, 'webshop.db');
 
-mkdirSync(dataDir, { recursive: true });
+if (!process.env.SQUAD_DB_PATH) {
+  mkdirSync(dataDir, { recursive: true });
+} else {
+  mkdirSync(dirname(dbPath), { recursive: true });
+}
 
 const isNew = !existsSync(dbPath);
 

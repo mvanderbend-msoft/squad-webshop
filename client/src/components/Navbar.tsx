@@ -28,6 +28,14 @@ export function Navbar() {
             Cart
             {itemCount > 0 && <span className="cart-badge">{itemCount}</span>}
           </NavLink>
+          {user && (
+            <NavLink
+              to="/favorites"
+              className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
+            >
+              Favorites
+            </NavLink>
+          )}
           {user ? (
             <>
               <NavLink to="/account" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>

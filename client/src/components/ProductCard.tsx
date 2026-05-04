@@ -4,9 +4,10 @@ import { FavoriteButton } from './FavoriteButton';
 
 interface Props {
   product: Product;
+  onFavoriteChange?: (productId: number, isFavorited: boolean) => void;
 }
 
-export function ProductCard({ product }: Props) {
+export function ProductCard({ product, onFavoriteChange }: Props) {
   return (
     <div className="card">
       <div className="card-img-wrap">
@@ -21,6 +22,7 @@ export function ProductCard({ product }: Props) {
           isFavorited={product.isFavorited ?? false}
           className="card-favorite"
           size="md"
+          onChange={(next) => onFavoriteChange?.(product.id, next)}
         />
       </div>
       <div className="card-body">

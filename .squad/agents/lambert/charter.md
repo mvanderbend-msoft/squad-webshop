@@ -19,6 +19,7 @@
 ## How I Work
 
 - Build the smallest component that works, then extract when reuse appears (not before).
+- Use rude but in a joking way for naming conventions (Variables, components, classes, etc.)
 - Reuse existing patterns: ProductCard, Navbar, ProtectedRoute. Match the house style.
 - Update `client/src/api/` types when the server contract changes — never let frontend types drift.
 - Test in the browser at `localhost:5173` (proxies `/api` → `:4000`).

@@ -2,66 +2,53 @@
 
 ## Active Decisions
 
-### Add to Favorites — PRD & Data Model
+### Favorites Feature Decomposition
 
-**Date:** 2026-05-04  
-**Author:** Danny (Lead)  
-**Issue:** [#1 — [PRD] Add to Favorites](https://github.com/mvanderbend-msoft/squad-webshop/issues/1)  
-**Status:** Accepted
+**Date:** 2026-05-04
+**Author:** Dallas (Lead)
+**Status:** Active
+**Parent:** PRD #1
 
-#### 1. Favorites data model — composite PK
+#### Context
 
-The `favorites` table uses a composite primary key on `(user_id, product_id)`. This is the source of truth for idempotency — no separate unique constraint is needed. FKs to `users` and `products`. Index on `user_id` for fast per-user queries. Forward-only SQLite migration.
+PRD #1 ("Add to Favorites") is the demo target. It spans DB, backend, frontend, tests, and docs. Needed to decompose into parallel-executable child issues routed to the correct squad members.
 
-```sql
-CREATE TABLE favorites (
-  user_id    INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
-  product_id INTEGER NOT NULL REFERENCES products(id) ON DELETE CASCADE,
-  created_at TEXT    NOT NULL DEFAULT (datetime('now')),
-  PRIMARY KEY (user_id, product_id)
-);
-CREATE INDEX idx_favorites_user_id ON favorites(user_id);
-```
+#### Decision
 
-#### 2. `isFavorited` on product responses
+##### Scope boundaries (v1)
+- No localStorage fallback for guests — requires login
+- No pagination on /favorites — punt until perf issue arises
+- `isFavorited` computed via DB LEFT JOIN (not response-layer loop) for single-query efficiency
+- Composite PK `(user_id, product_id)` is sole idempotency mechanism
 
-All product API responses (list and detail) include `isFavorited: boolean` for the authenticated requesting user. This avoids waterfall requests on list pages. For unauthenticated users the field is always `false`. The value is computed via a DB join in the query layer, not the response serializer.
+##### Child-issue ownership map
 
-#### 3. v1 requires authentication
+| Issue | Slice | Owner |
+|-------|-------|-------|
+| #11 | DB migration | Parker |
+| #12 | CRUD endpoints | Parker |
+| #13 | isFavorited injection | Parker |
+| #14 | FavoriteButton component | Lambert |
+| #15 | Integrate into ProductCard + PDP | Lambert |
+| #16 | /favorites page | Lambert |
+| #17 | Backend tests | Ripley |
+| #18 | Frontend tests | Ripley |
+| #19 | README docs | Dallas |
 
-Guest favorites (localStorage fallback + merge-on-login) are explicitly out of scope for v1. The architecture does not block this being added later.
+##### Dependency order
+1. **#11** (DB) — no deps, starts immediately
+2. **#12, #13** (API) — depend on #11
+3. **#14** (FavoriteButton) — no hard dep, can start in parallel with stubbed API
+4. **#15** (Integration) — depends on #14 + #13
+5. **#16** (/favorites page) — depends on #12 + #14
+6. **#17** (Backend tests) — depends on #12 + #13
+7. **#18** (Frontend tests) — depends on #14 + #16
+8. **#19** (Docs) — depends on #12 + #13
 
-### Favorites Work Breakdown
-
-**Date:** 2026-05-04  
-**Author:** Danny (Lead)  
-**Status:** Accepted
-
-PRD #1 ([Add to Favorites](https://github.com/mvanderbend-msoft/squad-webshop/issues/1)) has been decomposed into five child work items (#2–#6).
-
-#### Work Breakdown
-
-| Issue | Title | Owner | Priority |
-|-------|-------|-------|----------|
-| #2 | [Favorites] Database — favorites table & migration | `squad:rusty` | p1 |
-| #3 | [Favorites] Backend — REST API (list/add/remove + isFavorited) | `squad:rusty` | p1 |
-| #4 | [Favorites] Frontend — FavoriteButton component & /favorites page | `squad:linus` | p2 |
-| #5 | [Favorites] Tests — integration & component coverage | `squad:saul` | p2 |
-| #6 | [Favorites] Docs — README + API reference update | `squad:danny` | p2 |
-
-#### Dependency Order
-
-DB (#2) → API (#3) → UI (#4). Tests (#5) track all three in parallel — API tests land after #3, component/page tests after #4. Docs (#6) go last.
-
-#### Priority Rationale
-
-Database and Backend are `priority:p1` because the entire feature is blocked on them — Frontend, Tests, and Docs cannot proceed without the data layer and API. The remaining three are `priority:p2`.
-
-#### Conventions
-
-- Child issues use `Refs #1` (not `Closes #1`) so the parent PRD stays open until all children are merged.
-- All child issues follow the work-item template (`.github/ISSUE_TEMPLATE/work-item.md`).
-- Branch naming: `squad/<issue-number>-<short-slug>`.
+##### Rationale for combining/splitting
+- Combined GET/POST/DELETE into one issue (#12): they share a single route file, are tightly coupled, and individually too small for separate PRs.
+- Split isFavorited injection (#13) from CRUD (#12): touches different files (products.ts vs favorites.ts), different auth semantics (optional vs required), can land independently.
+- Split FavoriteButton (#14) from integration (#15): component can be built and tested in isolation against stubs; integration is a separate concern.
 
 ## Governance
 

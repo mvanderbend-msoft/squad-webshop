@@ -26,16 +26,11 @@ if (isNew) {
   db.exec(schema);
   console.log('[db] Schema applied.');
 } else {
-  // Ensure tables exist even if DB file pre-existed but was empty
-  const tables = db
-    .prepare("SELECT name FROM sqlite_master WHERE type='table' AND name IN ('users','categories')")
-    .all() as { name: string }[];
-  if (tables.length < 2) {
-    const schemaPath = join(__dirname, 'schema.sql');
-    const schema = readFileSync(schemaPath, 'utf-8');
-    db.exec(schema);
-    console.log('[db] Schema applied (existing empty DB).');
-  }
+  // Apply schema on every startup — all DDL uses IF NOT EXISTS so this is safe and
+  // ensures new tables (e.g. favorites) are created on existing databases.
+  const schemaPath = join(__dirname, 'schema.sql');
+  const schema = readFileSync(schemaPath, 'utf-8');
+  db.exec(schema);
 }
 
 seedIfEmpty(db);

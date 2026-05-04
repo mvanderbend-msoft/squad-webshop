@@ -1,0 +1,21 @@
+{
+  "name": "squad-webshop",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Sample webshop app used for the Squad Demo. Add-to-Favorites feature is intentionally missing — it is the demo target.",
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "scripts": {
+    "dev": "npm-run-all --parallel dev:server dev:client",
+    "dev:server": "npm --workspace server run dev",
+    "dev:client": "npm --workspace client run dev",
+    "build": "npm --workspace server run build && npm --workspace client run build",
+    "seed": "npm --workspace server run seed",
+    "test": "npm --workspaces --if-present run test"
+  },
+  "devDependencies": {
+    "npm-run-all": "^4.1.5"
+  }
+}

@@ -1,0 +1,47 @@
+CREATE TABLE IF NOT EXISTS users (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  email TEXT UNIQUE NOT NULL,
+  password_hash TEXT NOT NULL,
+  name TEXT NOT NULL,
+  created_at TEXT NOT NULL DEFAULT (datetime('now'))
+);
+
+CREATE TABLE IF NOT EXISTS categories (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  slug TEXT UNIQUE NOT NULL,
+  name TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS products (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT NOT NULL,
+  description TEXT NOT NULL,
+  price_cents INTEGER NOT NULL,
+  image_url TEXT NOT NULL,
+  category_id INTEGER NOT NULL REFERENCES categories(id),
+  stock INTEGER NOT NULL DEFAULT 100
+);
+
+CREATE TABLE IF NOT EXISTS cart_items (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  product_id INTEGER NOT NULL REFERENCES products(id),
+  quantity INTEGER NOT NULL CHECK(quantity > 0),
+  UNIQUE(user_id, product_id)
+);
+
+CREATE TABLE IF NOT EXISTS orders (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  user_id INTEGER NOT NULL REFERENCES users(id),
+  total_cents INTEGER NOT NULL,
+  status TEXT NOT NULL DEFAULT 'paid',
+  created_at TEXT NOT NULL DEFAULT (datetime('now'))
+);
+
+CREATE TABLE IF NOT EXISTS order_items (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  order_id INTEGER NOT NULL REFERENCES orders(id) ON DELETE CASCADE,
+  product_id INTEGER NOT NULL REFERENCES products(id),
+  quantity INTEGER NOT NULL,
+  unit_price_cents INTEGER NOT NULL
+);

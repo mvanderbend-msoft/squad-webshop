@@ -1,0 +1,37 @@
+# Labels for the Squad Demo workflow.
+# Apply with: gh label create -f .github/labels.yml  (or use a sync action)
+# Each work item issue gets exactly one team:* label so the team member knows
+# what they own. Ralph uses ralph:* labels to track loop state.
+
+- name: "team:database"
+  color: "1f6feb"
+  description: "Database schema, migrations, seed data"
+- name: "team:backend"
+  color: "0e8a16"
+  description: "Node/Express API endpoints and middleware"
+- name: "team:frontend"
+  color: "d93f0b"
+  description: "React UI components, pages, styling"
+- name: "team:qa"
+  color: "fbca04"
+  description: "Tests, quality, validation"
+- name: "team:docs"
+  color: "5319e7"
+  description: "Documentation updates"
+
+- name: "type:prd"
+  color: "b60205"
+  description: "Product Requirements Document — parent issue"
+- name: "type:work-item"
+  color: "c5def5"
+  description: "Individual work item, child of a PRD"
+
+- name: "ralph:ready"
+  color: "0e8a16"
+  description: "Ready for Ralph to pick up and assign"
+- name: "ralph:in-progress"
+  color: "fbca04"
+  description: "Currently being worked by a team member"
+- name: "ralph:blocked"
+  color: "b60205"
+  description: "Blocked — needs human attention"

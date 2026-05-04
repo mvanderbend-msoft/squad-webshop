@@ -5,9 +5,17 @@
 - **Stack:** React 18 + Vite + TypeScript (client, port 5173), Node.js + Express + TypeScript (server, port 4000), SQLite via `node:sqlite` (Node 22+), JWT auth with `bcryptjs`, npm workspaces.
 - **Created:** 2026-05-04
 
+## Reminders
+
+- **2026-05-04:** Rude-naming convention is team-wide policy (not Lambert-exclusive). All squad members should adopt for their internal identifiers (CSS classes, local vars, helpers, list keys). Excludes exported names, user-facing copy, routes, shared props.
+
 ## Learnings
 
 <!-- Append new learnings below. Each entry is something lasting about the project. -->
+
+### 2026-05-04 — Charter Rule Visibility
+
+Charter rules buried in bullet lists alongside competing rules tend to get ignored — promote critical rules to their own top-level section with explicit conflict-resolution language.
 
 ### 2026-05-04 — PRD #1 Decomposition (Add to Favorites)
 

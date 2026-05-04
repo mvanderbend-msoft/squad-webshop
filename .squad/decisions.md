@@ -50,6 +50,36 @@ PRD #1 ("Add to Favorites") is the demo target. It spans DB, backend, frontend, 
 - Split isFavorited injection (#13) from CRUD (#12): touches different files (products.ts vs favorites.ts), different auth semantics (optional vs required), can land independently.
 - Split FavoriteButton (#14) from integration (#15): component can be built and tested in isolation against stubs; integration is a separate concern.
 
+### Lambert's Rude Naming Convention
+
+**Date:** 2026-05-04  
+**Raised by:** mvanderbend  
+**Status:** Active  
+**Applies to:** ⚛️ Lambert (Frontend Dev), team-wide learning
+
+#### Decision
+
+Lambert's charter mandates rude-but-joking naming for ALL internal identifiers in every piece of work — no exceptions, no forgetting.
+
+Applies to:
+- CSS class names (e.g. `ugly-mug-blob`, `oh-so-noble-values`, `snooze-fest-page`)
+- Local variables and constants (e.g. `boringTeamDrones`, `stupidlyLongList`)
+- Internal helper functions (e.g. `getObnoxiouslyFormattedPrice`)
+- Component-internal sub-components (if not exported)
+- `key` prop values in lists where a string is constructed
+
+Does NOT apply to:
+- Exported component names (must be importable sensibly)
+- User-facing copy (labels, headings, button text)
+- Route paths (URL-facing)
+- Props and public API surface shared with other components
+
+Tone: Playful jabs only. No slurs, no insults targeting protected groups. Examples: `stupidHeader`, `uglyMugBlob`, `madeUpJobTitle`, `blahBlahBox`.
+
+#### Rationale
+
+Lambert initially forgot this convention on the About page (first delivery used boring polite names). User mvanderbend reminded. Convention reinforced. Documented for future team reference and consistency.
+
 ## Governance
 
 - All meaningful changes require team consensus

@@ -869,6 +869,106 @@ ul {
   margin-bottom: 1.5rem;
 }
 
+/* ---- About page (yes, someone actually reads this) ---- */
+.snooze-fest-page {
+  max-width: 780px;
+  padding-top: 1rem;
+}
+
+.stupidly-big-header {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: #111827;
+}
+
+.blah-blah-box {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 1.5rem 1.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.blah-blah-box p {
+  color: #4b5563;
+  line-height: 1.75;
+}
+
+.sub-blah-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 0.75rem;
+}
+
+.oh-so-noble-values {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.oh-so-noble-values li {
+  color: #4b5563;
+  line-height: 1.6;
+  padding-left: 1.25rem;
+  position: relative;
+}
+
+.oh-so-noble-values li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: #2563eb;
+  font-weight: 700;
+}
+
+.ugly-mug-parade {
+  display: flex;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.look-at-me-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  flex: 1;
+  min-width: 120px;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 1.25rem 1rem;
+  text-align: center;
+}
+
+.ugly-mug-blob {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #2563eb;
+  color: #fff;
+  font-size: 1.4rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.25rem;
+}
+
+.im-so-important-name {
+  font-weight: 600;
+  color: #111827;
+  font-size: 0.95rem;
+}
+
+.made-up-job-title {
+  font-size: 0.82rem;
+  color: #6b7280;
+}
+
 /* ---- Responsive ---- */
 @media (max-width: 768px) {
   .page-home {
@@ -919,4 +1019,70 @@ ul {
   .auth-card {
     padding: 1.5rem 1rem;
   }
+}
+
+
+/* ---- Favorite button ---- */
+.favorite-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid #e5e7eb;
+  border-radius: 999px;
+  padding: 0.4rem;
+  cursor: pointer;
+  color: #6b7280;
+  transition: color 0.15s ease, transform 0.15s ease, background-color 0.15s ease;
+}
+.favorite-btn:hover {
+  color: #ef4444;
+  background: #fff;
+}
+.favorite-btn:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+.favorite-btn.is-favorited {
+  color: #ef4444;
+}
+.favorite-btn[data-pending='true'] {
+  opacity: 0.7;
+}
+.favorite-btn-sm { padding: 0.3rem; }
+.favorite-btn-lg { padding: 0.55rem; }
+.favorite-btn-lg .favorite-icon { width: 24px; height: 24px; }
+.favorite-icon { display: block; }
+
+.favorite-toast {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #1f2937;
+  color: #fff;
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  font-size: 0.9rem;
+}
+
+/* ---- Favorite button positioning ---- */
+.card-img-wrap {
+  position: relative;
+}
+.card-favorite {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: 50%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+.product-detail-title-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
 }

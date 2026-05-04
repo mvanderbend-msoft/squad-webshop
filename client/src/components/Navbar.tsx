@@ -24,10 +24,21 @@ export function Navbar() {
           <NavLink to="/" end className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>
             Home
           </NavLink>
+          <NavLink to="/about" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>
+            About
+          </NavLink>
           <NavLink to="/cart" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>
             Cart
             {itemCount > 0 && <span className="cart-badge">{itemCount}</span>}
           </NavLink>
+          {user && (
+            <NavLink
+              to="/favorites"
+              className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
+            >
+              Favorites
+            </NavLink>
+          )}
           {user ? (
             <>
               <NavLink to="/account" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>

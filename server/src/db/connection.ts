@@ -3,6 +3,7 @@ import { mkdirSync, readFileSync, existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { seedIfEmpty } from './seed.js';
+import { seedJobsIfEmpty } from './seedJobs.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -38,6 +39,20 @@ if (isNew) {
   }
 }
 
+// Ensure the jobs table exists for DBs created before the Careers feature.
+db.exec(`
+  CREATE TABLE IF NOT EXISTS jobs (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title TEXT NOT NULL,
+    team TEXT NOT NULL,
+    location TEXT NOT NULL,
+    description TEXT NOT NULL,
+    apply_url TEXT NOT NULL,
+    created_at TEXT NOT NULL DEFAULT (datetime('now'))
+  );
+`);
+
 seedIfEmpty(db);
+seedJobsIfEmpty(db);
 
 export { db };

@@ -27,6 +27,9 @@ export function Navbar() {
           <NavLink to="/about" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>
             About
           </NavLink>
+          <NavLink to="/jobs" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>
+            Jobs
+          </NavLink>
           <NavLink to="/cart" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>
             Cart
             {itemCount > 0 && <span className="cart-badge">{itemCount}</span>}

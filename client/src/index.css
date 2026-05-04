@@ -869,6 +869,106 @@ ul {
   margin-bottom: 1.5rem;
 }
 
+/* ---- About page ---- */
+.page-about {
+  max-width: 780px;
+  padding-top: 1rem;
+}
+
+.about-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: #111827;
+}
+
+.about-section {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 1.5rem 1.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.about-section p {
+  color: #4b5563;
+  line-height: 1.75;
+}
+
+.about-section-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 0.75rem;
+}
+
+.about-values {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.about-values li {
+  color: #4b5563;
+  line-height: 1.6;
+  padding-left: 1.25rem;
+  position: relative;
+}
+
+.about-values li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: #2563eb;
+  font-weight: 700;
+}
+
+.about-team-grid {
+  display: flex;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.about-team-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  flex: 1;
+  min-width: 120px;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 1.25rem 1rem;
+  text-align: center;
+}
+
+.about-team-avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #2563eb;
+  color: #fff;
+  font-size: 1.4rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.25rem;
+}
+
+.about-team-name {
+  font-weight: 600;
+  color: #111827;
+  font-size: 0.95rem;
+}
+
+.about-team-role {
+  font-size: 0.82rem;
+  color: #6b7280;
+}
+
 /* ---- Responsive ---- */
 @media (max-width: 768px) {
   .page-home {

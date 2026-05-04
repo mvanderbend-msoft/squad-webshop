@@ -3,11 +3,12 @@ import { mkdirSync, readFileSync, existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { seedIfEmpty } from './seed.js';
+import { runMigrations } from './migrate.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-// Resolve data directory relative to this file's location (src/db → go up to server/)
+// Resolve data directory relative to this file's location (src/db -> go up to server/)
 const serverRoot = join(__dirname, '..', '..');
 const dataDir = join(serverRoot, 'data');
 const dbPath = join(dataDir, 'webshop.db');
@@ -39,5 +40,7 @@ if (isNew) {
 }
 
 seedIfEmpty(db);
+
+runMigrations(db);
 
 export { db };

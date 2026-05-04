@@ -1086,3 +1086,62 @@ ul {
   justify-content: space-between;
   gap: 1rem;
 }
+
+/* ---- Favorite button ---- */
+.favorite-btn-wrapper {
+  position: relative;
+  display: inline-flex;
+}
+
+.favorite-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid #e5e7eb;
+  border-radius: 999px;
+  color: #6b7280;
+  cursor: pointer;
+  transition: color 0.15s, background 0.15s, border-color 0.15s, transform 0.1s;
+}
+
+.favorite-btn:hover {
+  color: #ef4444;
+  border-color: #fca5a5;
+  background: #fff;
+}
+
+.favorite-btn:active {
+  transform: scale(0.92);
+}
+
+.favorite-btn:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
+.favorite-btn.is-favorited {
+  color: #ef4444;
+  border-color: #fca5a5;
+}
+
+.favorite-btn[data-pending='true'] {
+  opacity: 0.7;
+}
+
+.favorite-btn-toast {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  background: #1f2937;
+  color: #fff;
+  padding: 0.6rem 0.9rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
+  z-index: 1000;
+  max-width: 280px;
+}

@@ -849,6 +849,17 @@ ul {
   margin-bottom: 1rem;
 }
 
+/* ---- Favorites page ---- */
+.favorite-tile {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.favorite-tile .btn {
+  align-self: stretch;
+}
+
 .text-muted {
   color: #6b7280;
   font-size: 0.9rem;

@@ -6,11 +6,11 @@ import { ProductDetail } from './pages/ProductDetail';
 import { Cart } from './pages/Cart';
 import { Checkout } from './pages/Checkout';
 import { Account } from './pages/Account';
-import { Favorites } from './pages/Favorites';
 import { OrderDetail } from './pages/OrderDetail';
 import { Login } from './pages/Login';
 import { Register } from './pages/Register';
 import { About } from './pages/About';
+import { Jobs } from './pages/Jobs';
 import { NotFound } from './pages/NotFound';
 
 export default function App() {
@@ -46,14 +46,6 @@ export default function App() {
             }
           />
           <Route
-            path="/favorites"
-            element={
-              <ProtectedRoute>
-                <Favorites />
-              </ProtectedRoute>
-            }
-          />
-          <Route
             path="/orders/:id"
             element={
               <ProtectedRoute>
@@ -62,6 +54,7 @@ export default function App() {
             }
           />
           <Route path="/about" element={<About />} />
+          <Route path="/jobs" element={<Jobs />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="*" element={<NotFound />} />

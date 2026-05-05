@@ -45,3 +45,14 @@ CREATE TABLE IF NOT EXISTS order_items (
   quantity INTEGER NOT NULL,
   unit_price_cents INTEGER NOT NULL
 );
+
+CREATE TABLE IF NOT EXISTS jobs (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  title TEXT NOT NULL,
+  team TEXT NOT NULL,
+  location TEXT NOT NULL,
+  employment_type TEXT NOT NULL,
+  description TEXT NOT NULL,
+  apply_url TEXT NOT NULL,
+  posted_at TEXT NOT NULL DEFAULT (datetime('now'))
+);

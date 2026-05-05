@@ -189,6 +189,8 @@ const PRODUCTS: Product[] = [
 ];
 
 export function seedIfEmpty(db: DatabaseSync): void {
+  seedJobsIfEmpty(db);
+
   const row = db.prepare('SELECT COUNT(*) as count FROM categories').get() as { count: number };
   if (row.count > 0) return;
 
@@ -225,6 +227,92 @@ export function seedIfEmpty(db: DatabaseSync): void {
   }
 
   console.log(`[seed] Inserted ${CATEGORIES.length} categories and ${PRODUCTS.length} products.`);
+}
+
+interface Job {
+  title: string;
+  team: string;
+  location: string;
+  employment_type: string;
+  description: string;
+  apply_url: string;
+}
+
+const JOBS: Job[] = [
+  {
+    title: 'Senior Frontend Engineer',
+    team: 'Storefront',
+    location: 'Remote (EU)',
+    employment_type: 'Full-time',
+    description:
+      'Lead the evolution of our React + Vite storefront. Own a11y, performance, and the design-system collaboration with our brand team.',
+    apply_url: 'mailto:jobs@squadwebshop.example?subject=Senior%20Frontend%20Engineer',
+  },
+  {
+    title: 'Backend Engineer',
+    team: 'Platform',
+    location: 'Amsterdam, NL',
+    employment_type: 'Full-time',
+    description:
+      'Design and ship Node + Express + SQLite services that power checkout, orders, and our growing favorites feature.',
+    apply_url: 'mailto:jobs@squadwebshop.example?subject=Backend%20Engineer',
+  },
+  {
+    title: 'QA / Test Engineer',
+    team: 'Quality',
+    location: 'Remote (Worldwide)',
+    employment_type: 'Full-time',
+    description:
+      'Build out our integration and component test coverage with Vitest and Supertest. Keep regressions out of main.',
+    apply_url: 'mailto:jobs@squadwebshop.example?subject=QA%20Engineer',
+  },
+  {
+    title: 'Product Designer',
+    team: 'Design',
+    location: 'London, UK',
+    employment_type: 'Full-time',
+    description:
+      'Shape the look and feel of the shop end-to-end — from PDPs to checkout. Partner closely with engineering on a shared design system.',
+    apply_url: 'mailto:jobs@squadwebshop.example?subject=Product%20Designer',
+  },
+  {
+    title: 'Customer Support Specialist',
+    team: 'Support',
+    location: 'Remote (EU)',
+    employment_type: 'Part-time',
+    description:
+      'Be the first human our customers talk to. Own ticket triage, work closely with engineering on bug repros, and turn pain points into product ideas.',
+    apply_url: 'mailto:jobs@squadwebshop.example?subject=Customer%20Support%20Specialist',
+  },
+];
+
+export function seedJobsIfEmpty(db: DatabaseSync): void {
+  const row = db.prepare('SELECT COUNT(*) as count FROM jobs').get() as { count: number };
+  if (row.count > 0) return;
+
+  console.log('[seed] Seeding jobs...');
+  const insertJob = db.prepare(
+    'INSERT INTO jobs (title, team, location, employment_type, description, apply_url) VALUES (?, ?, ?, ?, ?, ?)'
+  );
+
+  db.exec('BEGIN');
+  try {
+    for (const job of JOBS) {
+      insertJob.run(
+        job.title,
+        job.team,
+        job.location,
+        job.employment_type,
+        job.description,
+        job.apply_url
+      );
+    }
+    db.exec('COMMIT');
+  } catch (e) {
+    db.exec('ROLLBACK');
+    throw e;
+  }
+  console.log(`[seed] Inserted ${JOBS.length} jobs.`);
 }
 
 // Support running directly: tsx src/db/seed.ts

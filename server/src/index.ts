@@ -6,6 +6,7 @@ import authRouter from './routes/auth.js';
 import productsRouter from './routes/products.js';
 import cartRouter from './routes/cart.js';
 import ordersRouter from './routes/orders.js';
+import jobsRouter from './routes/jobs.js';
 
 const app = express();
 
@@ -32,6 +33,7 @@ app.use('/api/categories', (_req, res) => {
 });
 app.use('/api/cart', cartRouter);
 app.use('/api/orders', ordersRouter);
+app.use('/api/jobs', jobsRouter);
 
 // 404 fallback
 app.use((_req, res) => {

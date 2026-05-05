@@ -20,23 +20,13 @@ const db = new DatabaseSync(dbPath);
 db.exec('PRAGMA journal_mode = WAL');
 db.exec('PRAGMA foreign_keys = ON');
 
-if (isNew) {
-  const schemaPath = join(__dirname, 'schema.sql');
-  const schema = readFileSync(schemaPath, 'utf-8');
-  db.exec(schema);
-  console.log('[db] Schema applied.');
-} else {
-  // Ensure tables exist even if DB file pre-existed but was empty
-  const tables = db
-    .prepare("SELECT name FROM sqlite_master WHERE type='table' AND name IN ('users','categories')")
-    .all() as { name: string }[];
-  if (tables.length < 2) {
-    const schemaPath = join(__dirname, 'schema.sql');
-    const schema = readFileSync(schemaPath, 'utf-8');
-    db.exec(schema);
-    console.log('[db] Schema applied (existing empty DB).');
-  }
-}
+// schema.sql uses CREATE TABLE/INDEX IF NOT EXISTS for every object, so
+// applying it on every startup is safe and acts as a forward-only migration
+// for existing databases (e.g. picks up newly added tables like `jobs`).
+const schemaPath = join(__dirname, 'schema.sql');
+const schema = readFileSync(schemaPath, 'utf-8');
+db.exec(schema);
+console.log(isNew ? '[db] Schema applied.' : '[db] Schema applied (idempotent migration).');
 
 seedIfEmpty(db);
 

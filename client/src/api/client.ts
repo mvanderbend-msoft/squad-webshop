@@ -171,3 +171,18 @@ export function getOrders() {
 export function getOrder(id: number) {
   return apiFetch<{ order: Order }>(`/api/orders/${id}`);
 }
+
+export interface Job {
+  id: number;
+  title: string;
+  team: string;
+  location: string;
+  employment_type: string;
+  description: string;
+  apply_url: string;
+  posted_at: string;
+}
+
+export function getJobs() {
+  return apiFetch<{ jobs: Job[] }>('/api/jobs');
+}

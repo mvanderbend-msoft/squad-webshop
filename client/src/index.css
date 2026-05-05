@@ -1086,3 +1086,114 @@ ul {
   justify-content: space-between;
   gap: 1rem;
 }
+
+/* ---- Jobs / Careers page ---- */
+.careers-clutter {
+  padding-top: 2rem;
+  padding-bottom: 3rem;
+}
+
+.hire-me-already-header {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.huge-shouty-jobs-title {
+  font-size: 2.25rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #1a1a1a;
+}
+
+.please-apply-pitch {
+  color: #555;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.boring-loading-blah,
+.oh-no-error-blob,
+.empty-jobs-sad-trombone {
+  text-align: center;
+  padding: 2rem 0;
+  color: #555;
+}
+
+.oh-no-error-blob {
+  color: #b91c1c;
+}
+
+.jobs-listing-pile {
+  display: grid;
+  gap: 1rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.single-job-blob {
+  background: #fff;
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.job-headline-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.job-fancy-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.job-pill-of-truth {
+  background: #eef2ff;
+  color: #3730a3;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.job-meta-mumble {
+  color: #555;
+  font-size: 0.95rem;
+}
+
+.job-team-tag {
+  font-weight: 600;
+  color: #2563eb;
+}
+
+.job-where-tag {
+  color: #555;
+}
+
+.job-blurb-spiel {
+  color: #333;
+  line-height: 1.55;
+}
+
+.apply-now-button {
+  align-self: flex-start;
+  margin-top: 0.25rem;
+}
+
+@media (max-width: 600px) {
+  .huge-shouty-jobs-title {
+    font-size: 1.75rem;
+  }
+  .single-job-blob {
+    padding: 1rem;
+  }
+}

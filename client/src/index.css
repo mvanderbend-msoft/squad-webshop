@@ -1022,8 +1022,8 @@ ul {
 }
 
 
-/* ---- Favorite button ---- */
-.favorite-btn {
+/* ---- Favorite button (a.k.a. the needy heart) ---- */
+.heart-of-neediness {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -1035,26 +1035,26 @@ ul {
   color: #6b7280;
   transition: color 0.15s ease, transform 0.15s ease, background-color 0.15s ease;
 }
-.favorite-btn:hover {
+.heart-of-neediness:hover {
   color: #ef4444;
   background: #fff;
 }
-.favorite-btn:focus-visible {
+.heart-of-neediness:focus-visible {
   outline: 2px solid #2563eb;
   outline-offset: 2px;
 }
-.favorite-btn.is-favorited {
+.heart-of-neediness.is-smitten {
   color: #ef4444;
 }
-.favorite-btn[data-pending='true'] {
+.heart-of-neediness[data-pending='true'] {
   opacity: 0.7;
 }
-.favorite-btn-sm { padding: 0.3rem; }
-.favorite-btn-lg { padding: 0.55rem; }
-.favorite-btn-lg .favorite-icon { width: 24px; height: 24px; }
-.favorite-icon { display: block; }
+.heart-of-neediness-sm { padding: 0.3rem; }
+.heart-of-neediness-lg { padding: 0.55rem; }
+.heart-of-neediness-lg .stupid-heart-blob { width: 24px; height: 24px; }
+.stupid-heart-blob { display: block; }
 
-.favorite-toast {
+.whiny-toast {
   position: fixed;
   bottom: 1.5rem;
   left: 50%;

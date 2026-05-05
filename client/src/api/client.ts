@@ -171,3 +171,11 @@ export function getOrders() {
 export function getOrder(id: number) {
   return apiFetch<{ order: Order }>(`/api/orders/${id}`);
 }
+
+export function addFavorite(productId: number) {
+  return apiFetch<{ ok: true }>(`/api/favorites/${productId}`, { method: 'POST' });
+}
+
+export function removeFavorite(productId: number) {
+  return apiFetch<{ ok: true }>(`/api/favorites/${productId}`, { method: 'DELETE' });
+}

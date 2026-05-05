@@ -11,6 +11,7 @@ import { OrderDetail } from './pages/OrderDetail';
 import { Login } from './pages/Login';
 import { Register } from './pages/Register';
 import { About } from './pages/About';
+import { Jobs } from './pages/Jobs';
 import { NotFound } from './pages/NotFound';
 
 export default function App() {
@@ -62,6 +63,7 @@ export default function App() {
             }
           />
           <Route path="/about" element={<About />} />
+          <Route path="/jobs" element={<Jobs />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="*" element={<NotFound />} />

@@ -98,6 +98,16 @@ export interface Order {
   items?: OrderItemDetail[];
 }
 
+export interface Job {
+  id: number;
+  title: string;
+  team: string;
+  location: string;
+  description: string;
+  apply_url: string;
+  created_at: string;
+}
+
 // ——— Helpers ———
 
 export function getProducts(params?: { category?: string; q?: string }) {
@@ -170,4 +180,8 @@ export function getOrders() {
 
 export function getOrder(id: number) {
   return apiFetch<{ order: Order }>(`/api/orders/${id}`);
+}
+
+export function getJobs() {
+  return apiFetch<{ jobs: Job[] }>('/api/jobs');
 }

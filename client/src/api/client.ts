@@ -60,6 +60,7 @@ export interface Product {
   image_url: string;
   stock: number;
   category: Category;
+  isFavorited?: boolean;
 }
 
 export interface CartItem {

@@ -1086,3 +1086,98 @@ ul {
   justify-content: space-between;
   gap: 1rem;
 }
+
+
+/* ---- Careers / Jobs page ---- */
+.careers-snoozefest {
+  max-width: 880px;
+  padding-top: 1rem;
+}
+
+.careers-shouty-header {
+  margin-bottom: 1.5rem;
+}
+
+.careers-blurb {
+  color: #4b5563;
+  line-height: 1.7;
+  max-width: 640px;
+}
+
+.careers-oops {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+
+.madeUpJobList {
+  list-style: none;
+  display: grid;
+  gap: 1rem;
+  padding: 0;
+  margin: 0;
+}
+
+.job-brag-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.job-brag-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.job-fancy-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #111827;
+  margin: 0;
+}
+
+.job-team-tag {
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #2563eb;
+  background: #eff6ff;
+  border-radius: 999px;
+  padding: 0.2rem 0.65rem;
+}
+
+.job-where-blurb {
+  font-size: 0.9rem;
+  color: #6b7280;
+  margin: 0;
+}
+
+.job-spiel {
+  color: #4b5563;
+  line-height: 1.65;
+  margin: 0;
+}
+
+.job-apply-cta {
+  align-self: flex-start;
+  margin-top: 0.25rem;
+  text-decoration: none;
+}
+
+@media (max-width: 480px) {
+  .job-brag-card {
+    padding: 1rem 1.1rem;
+  }
+  .job-fancy-title {
+    font-size: 1.05rem;
+  }
+}
